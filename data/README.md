@@ -56,7 +56,7 @@ The full labels include:
 
 ## 4. Data Split Strategy
 
-We will follow the belo evaluation setup:
+We will follow the below evaluation setup:
 
 ```text
 Train       → mentalmanip_maj (80%)
@@ -64,10 +64,67 @@ Validation  → mentalmanip_maj (20%)
 Test        → mentalmanip_con (100%)
 ```
 
+### Generated Files
+
+After running preprocessing:
+
+```text
+data/processed/
+├── processed_maj.csv
+├── processed_con.csv
+├── train.csv
+├── val.csv
+```
+
+### Reproducibility
+
+The split is performed using:
+
+```python
+train_test_split(
+    maj_df,
+    test_size=0.2,
+    stratify=maj_df["label"],
+    random_state=42
+)
+```
+
 This ensures:
 
-* Learning from larger data (MAJ)
-* Evaluation on cleaner labels (CON)
+* Same split across runs
+* Balanced class distribution
+
+---
+
+### Dataset Sizes
+
+Example (will vary slightly depending on dataset version):
+
+```text
+Train size: 3200
+Validation size: 800
+Test size: 2915
+```
+
+---
+
+### Label Distribution Check
+
+We verify that the class distribution is preserved:
+
+```text
+Train:
+0 → 2254
+1 → 946
+
+Validation:
+0 → 564
+1 → 236
+
+Test (CON):
+0 → 2016
+1 → 899
+```
 
 ---
 

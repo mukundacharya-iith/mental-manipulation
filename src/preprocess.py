@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from sklearn.model_selection import train_test_split
 
 def load_csv(path):
     df = pd.read_csv(path)
@@ -71,6 +72,28 @@ def main():
 
     save_csv(maj_df, maj_out)
     save_csv(con_df, con_out)
+
+    train_df, val_df = train_test_split(
+        maj_df,
+        test_size=0.2,
+        stratify=maj_df["label"],
+        random_state=42
+    )
+    save_csv(train_df, "data/processed/train.csv")
+    save_csv(val_df, "data/processed/val.csv")
+    print("\nSplit sizes:")
+    print(f"Train size: {len(train_df)}")
+    print(f"Validation size: {len(val_df)}")
+    print(f"Test size (CON): {len(con_df)}")
+
+    print("\nTrain label distribution:")
+    print(train_df["label"].value_counts())
+
+    print("\nValidation label distribution:")
+    print(val_df["label"].value_counts())
+
+    print("\nTest (CON) label distribution:")
+    print(con_df["label"].value_counts())
 
 
 if __name__ == "__main__":
