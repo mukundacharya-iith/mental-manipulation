@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+     control       0.88      0.89      0.89       899
+manipulation       0.95      0.95      0.95      2016
+
+    accuracy                           0.93      2915
+   macro avg       0.92      0.92      0.92      2915
+weighted avg       0.93      0.93      0.93      2915
