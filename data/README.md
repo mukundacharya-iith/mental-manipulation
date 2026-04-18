@@ -98,8 +98,6 @@ This ensures:
 
 ### Dataset Sizes
 
-Example (will vary slightly depending on dataset version):
-
 ```text
 Train size: 3200
 Validation size: 800
