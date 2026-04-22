@@ -1,4 +1,5 @@
 model/
+models/
 model_lora/
 
 # Byte-compiled / optimized / DLL files

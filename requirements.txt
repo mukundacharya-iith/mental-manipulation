@@ -8,3 +8,4 @@ tqdm
 peft
 accelerate
 peft
+os

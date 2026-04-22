@@ -4,131 +4,175 @@
 
 This project uses the **MentalManip dataset** for detecting manipulative language in conversations.
 
-We work with the processed CSV files provided in the experiments folder of the dataset:
+We work with two dataset variants:
 
-* `mentalmanip_maj.csv` (majority annotations)
-* `mentalmanip_con.csv` (consensus annotations)
+* **mentalmanip_maj.csv** → Majority annotations (noisy labels)
+* **mentalmanip_con.csv** → Consensus annotations (high-quality labels)
+
+Both datasets contain the **same dialogues**, but differ in label quality.
 
 ---
 
 ## 2. Dataset Variants
 
-### Majority Dataset (`mentalmanip_maj.csv`)
+### Majority Dataset (mentalmanip_maj.csv)
 
-* Larger dataset
-* Labels based on majority agreement
-* Will be used for **training**
+* Larger dataset (~4000 samples)
+* Labels based on **majority agreement**
+* Contains **noisy / ambiguous labels**
 
-### Consensus Dataset (`mentalmanip_con.csv`)
+---
 
-* Smaller dataset
-* Labels with full annotator agreement
-* Will be used for **testing** as we have a consesnus among all annotators, meaning this is high quality data.
+### Consensus Dataset (mentalmanip_con.csv)
+
+* Smaller dataset (~2915 samples)
+* Labels with **full annotator agreement**
+* Considered **high-quality ground truth**
 
 ---
 
 ## 3. Task Definition
 
-**Binary Manipulation Detection**
+### Binary Manipulation Detection
 
 | Label | Meaning                   |
 | ----- | ------------------------- |
 | 0     | Control (no manipulation) |
 | 1     | Manipulation present      |
 
-**Technique Classification**
+---
 
-The full labels include:
+### Technique Classification (Auxiliary)
+
+Examples include:
 
 * Denial
 * Evasion
-* Feigning Innocence
 * Rationalization
 * Playing the Victim Role
-* Playing the Servant Role
 * Shaming or Belittlement
 * Intimidation
-* Brandishing Anger
-* Accusation
 * Persuasion or Seduction
 
 ---
 
-## 4. Data Split Strategy
+## 4. Experimental Setups
 
-We will follow the below evaluation setup:
-
-```text
-Train       → mentalmanip_maj (80%)
-Validation  → mentalmanip_maj (20%)
-Test        → mentalmanip_con (100%)
-```
-
-### Generated Files
-
-After running preprocessing:
-
-```text
-data/processed/
-├── processed_maj.csv
-├── processed_con.csv
-├── train.csv
-├── val.csv
-```
-
-### Reproducibility
-
-The split is performed using:
-
-```python
-train_test_split(
-    maj_df,
-    test_size=0.2,
-    stratify=maj_df["label"],
-    random_state=42
-)
-```
-
-This ensures:
-
-* Same split across runs
-* Balanced class distribution
+Since MAJ and CON share the same dialogues, we design **three evaluation strategies**.
 
 ---
 
-### Dataset Sizes
+### Experiment 1: MAJ Only (Noisy Baseline)
 
 ```text
-Train size: 3200
-Validation size: 800
-Test size: 2915
+Train → MAJ (80%)
+Val   → MAJ (10%)
+Test  → MAJ (10%)
+```
+
+**Purpose:**
+
+* Evaluate performance on noisy labels
+* Establish baseline
+
+---
+
+### Experiment 2: CON Only (Clean Upper Bound)
+
+```text
+Train → CON (80%)
+Val   → CON (10%)
+Test  → CON (10%)
+```
+
+**Purpose:**
+
+* Measure best possible performance
+* Understand impact of clean annotations
+
+---
+
+### Experiment 3: Clean Protocol (No Leakage)
+
+This setup ensures **no dialogue overlap between train and test**.
+
+#### Step 1: Split CON
+
+```text
+CON → 90% Training Pool + 10% Test
+```
+
+* Test set is **clean and unseen**
+
+---
+
+#### Step 2: Identify Ambiguous Data
+
+```text
+Ambiguous = MAJ - CON
+```
+
+* Dialogues where annotators disagreed
+
+---
+
+#### Step 3: Build Training Pool
+
+```text
+Training Pool =
+    90% CON (clean)
+  + MAJ - CON (ambiguous)
 ```
 
 ---
 
-### Label Distribution Check
-
-We verify that the class distribution is preserved:
+#### Step 4: Final Split
 
 ```text
-Train:
-0 → 2254
-1 → 946
-
-Validation:
-0 → 564
-1 → 236
-
-Test (CON):
-0 → 2016
-1 → 899
+Train → 90% of Training Pool
+Val   → 10% of Training Pool
+Test  → 10% CON (held-out clean set)
 ```
 
 ---
 
-## 5. Preprocessing Steps
+## 5. Generated Files
 
-We perform minimal preprocessing to preserve alignment with the original dataset.
+After preprocessing:
+
+```text
+data/
+├── exp1_maj/
+│   ├── train.csv
+│   ├── val.csv
+│   └── test.csv
+│
+├── exp2_con/
+│   ├── train.csv
+│   ├── val.csv
+│   └── test.csv
+│
+├── exp3_clean/
+│   ├── train.csv
+│   ├── val.csv
+│   └── test.csv
+```
+
+---
+
+## 6. Dataset Sizes (Approx)
+
+| Experiment | Train | Val | Test |
+| ---------- | ----- | --- | ---- |
+| MAJ        | 3200  | 400 | 400  |
+| CON        | 2332  | 292 | 292  |
+| Clean      | 3337  | 371 | 292  |
+
+---
+
+## 7. Preprocessing Steps
+
+Minimal preprocessing is applied:
 
 ### Step 1: Load CSV
 
@@ -136,113 +180,82 @@ We perform minimal preprocessing to preserve alignment with the original dataset
 df = pd.read_csv(path)
 ```
 
----
-
-### Step 2: Select Relevant Columns
-
-We retain only the necessary columns:
+### Step 2: Select Columns
 
 ```text
 Dialogue, Manipulative, Technique
 ```
 
----
-
-### Step 3: Rename Columns
-
-To standardize the pipeline:
+### Step 3: Rename
 
 ```text
 Dialogue     → text  
-Manipulative → label
+Manipulative → label  
 Technique    → technique
 ```
 
----
-
 ### Step 4: Handle Missing Values
 
-* Remove rows with missing text or labels
-* Fill missing techniques with `"control"`
-
----
+* Drop rows with missing text/label
+* Fill missing technique with `"control"`
 
 ### Step 5: Clean Text
 
 * Convert to string
-* Strip leading/trailing spaces
-
----
+* Strip whitespace
 
 ### Step 6: Normalize Labels
 
-#### Binary Label:
-
-```text
-0 → control  
-1 → manipulation
-```
-
-#### Technique:
-
-* Convert to lowercase
-* Normalize formatting
+* Binary labels → int (0/1)
+* Technique → lowercase
 
 ---
 
-## 6. Output Format
+## 8. Final Schema
 
-After preprocessing, both datasets are saved as:
-
-```text
-data/processed/processed_maj.csv  
-data/processed/processed_con.csv
-```
-
----
-
-### Final Schema
-
-| Column    | Description                     |
-| --------- | ------------------------------- |
-| text      | Input dialogue                  |
-| label     | Binary manipulation label (0/1) |
-| technique | Type of manipulation            |
+| Column    | Description        |
+| --------- | ------------------ |
+| text      | Input dialogue     |
+| label     | Binary label (0/1) |
+| technique | Manipulation type  |
 
 ---
 
-### Example
+## 9. Design Decisions
 
-```text
-text                                                                                         label   technique
-----------------------------------------------------------------------------------------------------------------------
-"You will or you'll be back at BET so quick you'll never know what hit you"                  1       shaming or belittlement
-"I couldn't help but notice you pain"                                                        0       control
-```
+* Do not merge MAJ and CON blindly (to avoid leakage)
+* Use **multiple setups** to analyze label quality
+* Keep preprocessing minimal
+* Focus on binary classification
 
 ---
 
-## 7. Design Decisions
+## 10. Summary
 
-* We **do not modify dataset structure heavily** to remain consistent with prior work.
-* We **do not merge MAJ and CON datasets** to avoid label inconsistency.
-* We ignore **vulnerability labels** as they are not required for the primary task.
-
----
-
-## 8. Summary
-
-* Use MAJ for training and validation
-* Use CON for final evaluation
-* Perform minimal preprocessing
-* Focus on binary classification as the core task
+* MAJ → noisy but large
+* CON → clean but smaller
+* Clean protocol → best practical setup
 
 ---
 
-## 9. How to Run
+## 11. How to Run
 
 ```bash
 python src/preprocess.py
 ```
 
-This will generate the processed datasets required for training and evaluation.
+Then train:
+
+```bash
+python train.py --data_dir data/exp1_maj --exp_name maj
+python train.py --data_dir data/exp2_con --exp_name con
+python train.py --data_dir data/exp3_clean --exp_name clean
+```
+
+---
+
+This setup ensures:
+
+* No data leakage
+* Fair comparison
+* Meaningful evaluation across label qualities
