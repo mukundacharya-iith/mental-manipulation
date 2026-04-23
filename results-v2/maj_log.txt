@@ -1,0 +1,38 @@
+
+Epoch 1 Loss: 0.6712
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7025, 'f1_macro': 0.6097560975609756, 'f1_weighted': 0.6877560975609757, 'precision_macro': 0.627318130072344, 'recall_macro': 0.6041892054333453, 'confusion_matrix': array([[ 43,  75],
+       [ 44, 238]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.49      0.36      0.42       118\nmanipulation       0.76      0.84      0.80       282\n\n    accuracy                           0.70       400\n   macro avg       0.63      0.60      0.61       400\nweighted avg       0.68      0.70      0.69       400\n'}
+Saved best model to {mode_dir}
+
+Epoch 2 Loss: 0.6210
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.6325, 'f1_macro': 0.6159648882183514, 'f1_weighted': 0.6486366753531752, 'precision_macro': 0.6314782869571739, 'recall_macro': 0.6580418319509556, 'confusion_matrix': array([[ 85,  33],
+       [114, 168]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.43      0.72      0.54       118\nmanipulation       0.84      0.60      0.70       282\n\n    accuracy                           0.63       400\n   macro avg       0.63      0.66      0.62       400\nweighted avg       0.72      0.63      0.65       400\n'}
+Saved best model to {mode_dir}
+
+Epoch 3 Loss: 0.5393
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.655, 'f1_macro': 0.6310061766357389, 'f1_weighted': 0.6695844808684724, 'precision_macro': 0.6358585858585859, 'recall_macro': 0.6616780863084506, 'confusion_matrix': array([[ 80,  38],
+       [100, 182]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.44      0.68      0.54       118\nmanipulation       0.83      0.65      0.73       282\n\n    accuracy                           0.66       400\n   macro avg       0.64      0.66      0.63       400\nweighted avg       0.71      0.66      0.67       400\n'}
+Saved best model to {mode_dir}
+
+Epoch 4 Loss: 0.4429
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7325, 'f1_macro': 0.6320463552815963, 'f1_weighted': 0.7108712248213963, 'precision_macro': 0.6714632818063759, 'recall_macro': 0.623001562687823, 'confusion_matrix': array([[ 42,  76],
+       [ 31, 251]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.58      0.36      0.44       118\nmanipulation       0.77      0.89      0.82       282\n\n    accuracy                           0.73       400\n   macro avg       0.67      0.62      0.63       400\nweighted avg       0.71      0.73      0.71       400\n'}
+Saved best model to {mode_dir}
+
+Epoch 5 Loss: 0.3330
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.6875, 'f1_macro': 0.6288571025616283, 'f1_weighted': 0.6893441162716469, 'precision_macro': 0.6274691086261044, 'recall_macro': 0.6305144849140522, 'confusion_matrix': array([[ 58,  60],
+       [ 65, 217]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.47      0.49      0.48       118\nmanipulation       0.78      0.77      0.78       282\n\n    accuracy                           0.69       400\n   macro avg       0.63      0.63      0.63       400\nweighted avg       0.69      0.69      0.69       400\n'}
+
+Test Results:
+{'name': 'Test', 'accuracy': 0.6525, 'f1_macro': 0.6015793509183023, 'f1_weighted': 0.6599778575574521, 'precision_macro': 0.5992033959039664, 'recall_macro': 0.6081560283687943, 'confusion_matrix': array([[ 59,  59],
+       [ 80, 202]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.42      0.50      0.46       118\nmanipulation       0.77      0.72      0.74       282\n\n    accuracy                           0.65       400\n   macro avg       0.60      0.61      0.60       400\nweighted avg       0.67      0.65      0.66       400\n'}
