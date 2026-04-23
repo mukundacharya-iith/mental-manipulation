@@ -40,8 +40,8 @@ Three dataset strategies were tested:
 
 * Accuracy: **~0.72**
 * Macro F1: **~0.63**
-* Control recall: **~0.38 ❌**
-* Manipulation recall: **~0.88 ⚠️**
+* Control recall: **~0.38**
+* Manipulation recall: **~0.88**
 
 ### Issue
 
@@ -54,15 +54,15 @@ Three dataset strategies were tested:
 
 Improvements applied:
 
-* ✅ Class weights: `[1.69, 0.71]`
-* ✅ Threshold tuning (dynamic, not fixed)
-* ✅ Model selection using **macro F1**
+* Class weights: `[1.69, 0.71]`
+* Threshold tuning (dynamic, not fixed)
+* Model selection using **macro F1**
 
 ### Results
 
 * Accuracy: **~0.67**
 * Macro F1: **~0.65**
-* Control recall: **~0.66 ✅**
+* Control recall: **~0.66**
 * Manipulation recall: **~0.68**
 
 ### Impact
