@@ -1,0 +1,35 @@
+
+Epoch 1 Loss: 0.4291
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7008086253369272, 'f1_macro': 0.6543623316127407, 'f1_weighted': 0.7066144120524506, 'precision_macro': 0.6501133786848072, 'recall_macro': 0.6622662651446181, 'confusion_matrix': array([[ 62,  47],
+       [ 64, 198]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.49      0.57      0.53       109\nmanipulation       0.81      0.76      0.78       262\n\n    accuracy                           0.70       371\n   macro avg       0.65      0.66      0.65       371\nweighted avg       0.72      0.70      0.71       371\n', 'best_threshold': np.float64(0.6499999999999999)}
+Saved best model to models/clean-finetune-lora/clean-finetune-lora
+
+Epoch 2 Loss: 0.4201
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.706199460916442, 'f1_macro': 0.6523619170427681, 'f1_weighted': 0.7087807130199743, 'precision_macro': 0.65, 'recall_macro': 0.6553680229707963, 'confusion_matrix': array([[ 58,  51],
+       [ 58, 204]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.50      0.53      0.52       109\nmanipulation       0.80      0.78      0.79       262\n\n    accuracy                           0.71       371\n   macro avg       0.65      0.66      0.65       371\nweighted avg       0.71      0.71      0.71       371\n', 'best_threshold': np.float64(0.6)}
+
+Epoch 3 Loss: 0.4127
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7088948787061995, 'f1_macro': 0.6510971786833856, 'f1_weighted': 0.7096604111568328, 'precision_macro': 0.6503291753291753, 'recall_macro': 0.6519189018838855, 'confusion_matrix': array([[ 56,  53],
+       [ 55, 207]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.50      0.51      0.51       109\nmanipulation       0.80      0.79      0.79       262\n\n    accuracy                           0.71       371\n   macro avg       0.65      0.65      0.65       371\nweighted avg       0.71      0.71      0.71       371\n', 'best_threshold': np.float64(0.6)}
+
+Epoch 4 Loss: 0.4039
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7008086253369272, 'f1_macro': 0.6441846600482128, 'f1_weighted': 0.7027215971372217, 'precision_macro': 0.6425011946207932, 'recall_macro': 0.6461937110441908, 'confusion_matrix': array([[ 56,  53],
+       [ 58, 204]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.49      0.51      0.50       109\nmanipulation       0.79      0.78      0.79       262\n\n    accuracy                           0.70       371\n   macro avg       0.64      0.65      0.64       371\nweighted avg       0.70      0.70      0.70       371\n', 'best_threshold': np.float64(0.6)}
+
+Epoch 5 Loss: 0.3995
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7035040431266847, 'f1_macro': 0.6464830214830215, 'f1_weighted': 0.7050348088083936, 'precision_macro': 0.6450744323248954, 'recall_macro': 0.6481021079907556, 'confusion_matrix': array([[ 56,  53],
+       [ 57, 205]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.50      0.51      0.50       109\nmanipulation       0.79      0.78      0.79       262\n\n    accuracy                           0.70       371\n   macro avg       0.65      0.65      0.65       371\nweighted avg       0.71      0.70      0.71       371\n', 'best_threshold': np.float64(0.6499999999999999)}
+
+Test Results:
+{'name': 'Test', 'accuracy': 0.708904109589041, 'f1_macro': 0.6576315607972963, 'f1_weighted': 0.7084503702192027, 'precision_macro': 0.6581336137709637, 'recall_macro': 0.6571507150715072, 'confusion_matrix': array([[ 47,  43],
+       [ 42, 160]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.53      0.52      0.53        90\nmanipulation       0.79      0.79      0.79       202\n\n    accuracy                           0.71       292\n   macro avg       0.66      0.66      0.66       292\nweighted avg       0.71      0.71      0.71       292\n'}

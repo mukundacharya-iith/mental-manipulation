@@ -237,25 +237,3 @@ Technique    → technique
 * Clean protocol → best practical setup
 
 ---
-
-## 11. How to Run
-
-```bash
-python src/preprocess.py
-```
-
-Then train:
-
-```bash
-python train.py --data_dir data/exp1_maj --exp_name maj
-python train.py --data_dir data/exp2_con --exp_name con
-python train.py --data_dir data/exp3_clean --exp_name clean
-```
-
----
-
-This setup ensures:
-
-* No data leakage
-* Fair comparison
-* Meaningful evaluation across label qualities

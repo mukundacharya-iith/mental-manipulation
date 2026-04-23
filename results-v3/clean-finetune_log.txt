@@ -1,0 +1,37 @@
+
+Epoch 1 Loss: 0.6663
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.6576819407008087, 'f1_macro': 0.6161766742426094, 'f1_weighted': 0.6682283608664167, 'precision_macro': 0.613961038961039, 'recall_macro': 0.629053154982842, 'confusion_matrix': array([[ 61,  48],
+       [ 79, 183]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.44      0.56      0.49       109\nmanipulation       0.79      0.70      0.74       262\n\n    accuracy                           0.66       371\n   macro avg       0.61      0.63      0.62       371\nweighted avg       0.69      0.66      0.67       371\n', 'best_threshold': np.float64(0.6)}
+Saved best model to models/clean-finetune/clean-finetune
+
+Epoch 2 Loss: 0.6292
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7035040431266847, 'f1_macro': 0.6446360153256705, 'f1_weighted': 0.7042837521041815, 'precision_macro': 0.6439015939015938, 'recall_macro': 0.6454233489740178, 'confusion_matrix': array([[ 55,  54],
+       [ 56, 206]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.50      0.50      0.50       109\nmanipulation       0.79      0.79      0.79       262\n\n    accuracy                           0.70       371\n   macro avg       0.64      0.65      0.64       371\nweighted avg       0.71      0.70      0.70       371\n', 'best_threshold': np.float64(0.45)}
+Saved best model to models/clean-finetune/clean-finetune
+
+Epoch 3 Loss: 0.5700
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.6981132075471698, 'f1_macro': 0.6504475402113197, 'f1_weighted': 0.7036800008126706, 'precision_macro': 0.6464390243902439, 'recall_macro': 0.6576791091813152, 'confusion_matrix': array([[ 61,  48],
+       [ 64, 198]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.49      0.56      0.52       109\nmanipulation       0.80      0.76      0.78       262\n\n    accuracy                           0.70       371\n   macro avg       0.65      0.66      0.65       371\nweighted avg       0.71      0.70      0.70       371\n', 'best_threshold': np.float64(0.6499999999999999)}
+Saved best model to models/clean-finetune/clean-finetune
+
+Epoch 4 Loss: 0.4480
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.7088948787061995, 'f1_macro': 0.6008845326320822, 'f1_weighted': 0.6865093147530145, 'precision_macro': 0.6311066321144063, 'recall_macro': 0.5956649625323902, 'confusion_matrix': array([[ 35,  74],
+       [ 34, 228]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.51      0.32      0.39       109\nmanipulation       0.75      0.87      0.81       262\n\n    accuracy                           0.71       371\n   macro avg       0.63      0.60      0.60       371\nweighted avg       0.68      0.71      0.69       371\n', 'best_threshold': np.float64(0.6499999999999999)}
+
+Epoch 5 Loss: 0.3322
+
+Validation Results:
+{'name': 'Validation', 'accuracy': 0.6792452830188679, 'f1_macro': 0.6374245472837021, 'f1_weighted': 0.688206869247832, 'precision_macro': 0.6337453066332916, 'recall_macro': 0.6496778485888368, 'confusion_matrix': array([[ 63,  46],
+       [ 73, 189]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.46      0.58      0.51       109\nmanipulation       0.80      0.72      0.76       262\n\n    accuracy                           0.68       371\n   macro avg       0.63      0.65      0.64       371\nweighted avg       0.70      0.68      0.69       371\n', 'best_threshold': np.float64(0.5)}
+
+Test Results:
+{'name': 'Test', 'accuracy': 0.6746575342465754, 'f1_macro': 0.6489629601508422, 'f1_weighted': 0.6853907107675777, 'precision_macro': 0.6481214220426228, 'recall_macro': 0.6693619361936194, 'confusion_matrix': array([[ 59,  31],
+       [ 64, 138]]), 'report': '              precision    recall  f1-score   support\n\n     control       0.48      0.66      0.55        90\nmanipulation       0.82      0.68      0.74       202\n\n    accuracy                           0.67       292\n   macro avg       0.65      0.67      0.65       292\nweighted avg       0.71      0.67      0.69       292\n'}
