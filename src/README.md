@@ -81,6 +81,15 @@ This folder contains the core preprocessing, dataset, and model training scripts
     ```powershell
     python src/predict.py
     ```
+    Example output:
+    ```
+    Enter text (or 'q' to quit): I’ve been doing this for 20 years, so you should stop questioning my methods and just do what I say.
+
+    Prediction:
+    Label: MANIPULATION
+    Manipulation Score: 0.8348
+    Control Score: 0.1652
+    ```
 
 - `dataset.py`
   - Defines the `ManipulationDataset` PyTorch dataset class.
@@ -133,6 +142,12 @@ This folder contains the core preprocessing, dataset, and model training scripts
    python src/train-v2.py --data_dir data/exp3_clean --exp_name exp3_clean
    python src/train-v3-finetune.py --data_dir data/exp3_clean --exp_name clean_finetune
    python src/train-v4-lora-finetune.py --data_dir data/exp3_clean --exp_name clean_finetune_lora
+   ```
+
+7. Make predictions with a trained model:
+
+   ```powershell
+   python src/predict.py
    ```
 
 ## Notes
