@@ -73,6 +73,15 @@ This folder contains the core preprocessing, dataset, and model training scripts
     python src/train-v4-lora-finetune.py --data_dir data/exp3_clean --exp_name clean_finetune_lora
     ```
 
+- `predict.py`
+  - Loads a trained model (default: `models/clean-finetune-lora/clean-finetune-lora`) for inference.
+  - Provides an interactive CLI to input text and get predictions (MANIPULATION or CONTROL) with confidence scores.
+  - Uses a configurable threshold (default: 0.6) for classification.
+  - Run with:
+    ```powershell
+    python src/predict.py
+    ```
+
 - `dataset.py`
   - Defines the `ManipulationDataset` PyTorch dataset class.
   - Tokenizes input text with the Hugging Face tokenizer.
