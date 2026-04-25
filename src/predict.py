@@ -1,17 +1,42 @@
 import torch
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from peft import PeftModel
 
-# 🔥 CHANGE THIS PATH if needed
-MODEL_PATH = "models/clean-finetune-lora/clean-finetune-lora"
+# 🔥 PATHS (update if needed)
+BASE_MODEL_PATH = "models/clean-finetune/clean-finetune"
+LORA_MODEL_PATH = "models/clean-finetune-lora/clean-finetune-lora"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Load model + tokenizer
-tokenizer = DistilBertTokenizer.from_pretrained(MODEL_PATH, local_files_only=True)
-model = DistilBertForSequenceClassification.from_pretrained(MODEL_PATH, local_files_only=True).to(device)
+print("Loading model... please wait ⏳")
+
+# ---------------- LOAD TOKENIZER ----------------
+tokenizer = DistilBertTokenizer.from_pretrained(
+    BASE_MODEL_PATH,
+    local_files_only=True
+)
+
+# ---------------- LOAD BASE MODEL ----------------
+base_model = DistilBertForSequenceClassification.from_pretrained(
+    BASE_MODEL_PATH,
+    local_files_only=True
+)
+
+# ---------------- ATTACH LORA ----------------
+model = PeftModel.from_pretrained(
+    base_model,
+    LORA_MODEL_PATH
+).to(device)
+
+# Optional: merge for faster inference
+# model = model.merge_and_unload()
+
 model.eval()
 
+print("Model loaded successfully ✅")
 
+
+# ---------------- PREDICT FUNCTION ----------------
 def predict(text, threshold=0.6):
     inputs = tokenizer(
         text,
@@ -37,6 +62,7 @@ def predict(text, threshold=0.6):
     }
 
 
+# ---------------- CLI LOOP ----------------
 if __name__ == "__main__":
     while True:
         text = input("\nEnter text (or 'q' to quit): ")
