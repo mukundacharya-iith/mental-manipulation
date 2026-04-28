@@ -120,8 +120,6 @@ This ensures `src/predict-ui.py` can load both the discriminative and generative
 
 For required model paths and more details, see `src/README.md`.
 
-## Quick Start
-
 ## For running directly withour re-training and directly using the models.
 
 If you want to run `src/predict-ui.py` directly without retraining, download the full project zip from the submission and run - 
@@ -129,6 +127,7 @@ If you want to run `src/predict-ui.py` directly without retraining, download the
 ```powershell
 python src/predict-ui.py
 ```
+## Full pipeline
 
 1. Install dependencies from the repository root:
 
