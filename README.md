@@ -111,6 +111,7 @@ The packages should include the DistilBERT and Qwen model assets. Place the extr
 - `models/clean-finetune-lora/clean-finetune-lora`
 - `models/Qwen_1.5_BaseModel`
 - `models/qwen-manipulation-detector-model`
+- `models/offload`
 
 Also ensure the following folder exists before launching the UI:
 
@@ -120,13 +121,23 @@ This ensures `src/predict-ui.py` can load both the discriminative and generative
 
 For required model paths and more details, see `src/README.md`.
 
-## For running directly withour re-training and directly using the models.
+## For running directly without re-training and directly using the models.
 
 If you want to run `src/predict-ui.py` directly without retraining, download the full project zip from the submission and run - 
 
 ```powershell
 python src/predict-ui.py
 ```
+
+**Note** 
+
+Please ensure these models are present in the respective folders before running the UI.
+- `models/clean-finetune/clean-finetune`
+- `models/clean-finetune-lora/clean-finetune-lora`
+- `models/Qwen_1.5_BaseModel`
+- `models/qwen-manipulation-detector-model`
+- `models/offload`
+
 ## Full pipeline
 
 1. Install dependencies from the repository root:
@@ -173,7 +184,14 @@ python src/Qwen_Train_Eval.py
 python src/predict-ui.py
 ```
 
-**Note:** The `models/offload/` folder must be present in the project root before running the prediction interface. This folder is mandatory for model weight handling.
+**Note** 
+
+Please ensure these models are present in the respective folders before running the UI.
+- `models/clean-finetune/clean-finetune`
+- `models/clean-finetune-lora/clean-finetune-lora`
+- `models/Qwen_1.5_BaseModel`
+- `models/qwen-manipulation-detector-model`
+- `models/offload`
 
 ## Notes on Experiments
 
