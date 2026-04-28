@@ -173,6 +173,8 @@ python src/Qwen_Train_Eval.py
 python src/predict-ui.py
 ```
 
+**Note:** The `models/offload/` folder must be present in the project root before running the prediction interface. This folder is mandatory for model weight handling.
+
 ## Notes on Experiments
 
 The repository supports multiple evaluation strategies:
