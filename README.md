@@ -107,9 +107,11 @@ The UI is designed to show predictions in parallel and requires the relevant sav
 
 ## UI Model Download (Optional)
 
-If you want to run `src/predict-ui.py` directly without retraining, download the two model packages from:
+If you want to run `src/predict-ui.py` directly without retraining, download the full project zip from the submission and run - 
 
-- `<DOWNLOAD_URL_FOR_MODELS>`
+```powershell
+python src/predict-ui.py
+```
 
 The packages should include the DistilBERT and Qwen model assets. Place the extracted model directories exactly as follows:
 
