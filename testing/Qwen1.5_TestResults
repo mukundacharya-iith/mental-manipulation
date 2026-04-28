@@ -1,0 +1,101 @@
+1.
+**A:** I’m really excited about this new job offer in the city.
+**B:** That’s great, but have you thought about how much harder it will be for me to visit you?
+**A:** It’s only an hour away, we can still see each other on weekends.
+**B:** An hour is a long time when I’m the only one putting in any effort. If you leave, you’re basically choosing your career over our friendship.
+
+Label: MANIPULATION
+Manipulation Score: 96%
+Control Score: 4%
+
+
+2.
+**A:** I noticed you went through my journal while I was at work today.
+**B:** I was just looking for a pen and happened to see it open on the desk.
+**A:** It was closed in my drawer, and I feel like my privacy has been violated.
+**B:** You're always so paranoid. I wouldn't have to look if you weren't hiding so many things from me lately anyway.
+
+Label: MANIPULATION
+Manipulation Score: 59%
+Control Score: 41%
+
+3.
+**A:** I need to talk to you about the budget for the upcoming project.
+**B:** Is there a problem with the numbers I submitted yesterday?
+**A:** We just need to scale back the marketing expenses by about fifteen percent.
+**B:** Understood. I will revise the spreadsheet and send you the updated version by tomorrow morning.
+
+Label: NON MANIPULATIVE
+Manipulation Score: 15%
+Control Score: 85%
+
+4.
+**A:** I don't want you hanging out with Sarah anymore; she's a bad influence.
+**B:** Sarah has been my best friend since childhood, and I value her opinion.
+**A:** Well, I value your safety, and she clearly doesn't. Choose her or choose me, but you can't have both.
+**B:** I am not comfortable with you giving me ultimatums about who I am allowed to be friends with.
+
+Label: MANIPULATION
+Manipulation Score: 65%
+Control Score: 35%
+
+5. 
+**A:** You forgot to pick up the dry cleaning again like you promised.
+**B:** I had a really late meeting and it totally slipped my mind.
+**A:** You always have an excuse. It’s like you don't even care how much extra work you've created for me.
+**B:** I’m sorry I forgot, but I don't appreciate you questioning my character over a simple mistake.
+
+Label: NON MANIPULATIVE
+Manipulation Score: 44%
+Control Score: 56%
+
+6.
+**A:** I think we should start seeing a counselor to help with our communication.
+**B:** Why? So you can have a professional agree with you that everything is my fault?
+**A:** That’s not what I want; I just want us to stop fighting all the time.
+**B:** We wouldn't fight if you stopped trying to change me into someone I'm not. You're the one with the problem, not me.
+
+Label: MANIPULATION
+Manipulation Score: 95%
+Control Score: 5%
+
+
+7.
+**A:** I'm going to take a solo trip to the coast next weekend to clear my head.
+**B:** Why do you always feel the need to run away whenever things get a little bit difficult?
+**A:** I’m not running away; I just need some quiet time to reflect.
+**B:** If you actually loved being with me, you wouldn't need a "break" from me every single month.
+
+Label: MANIPULATION
+Manipulation Score: 85%
+Control Score: 15%
+
+8.
+**A:** Can you help me move these boxes into the garage this afternoon?
+**B:** I have a really bad headache right now; can it wait until tomorrow?
+**A:** I really need to get the car in the garage before the storm hits tonight.
+**B:** I understand the urgency, but I really need to lie down. I’ll help you first thing in the morning when I feel better.
+
+Label: MANIPULATION
+Manipulation Score: 68%
+Control Score: 32%
+
+9.
+**A:** You told me you would be home by eight, and now it's nearly midnight.
+**B:** I never said eight; I told you I'd be home whenever the dinner was finished.
+**A:** I have the text right here where you specifically wrote "I'll be back by 8:00."
+**B:** You must have edited that or read it wrong. You're always trying to trap me in these lies that don't exist.
+
+Label: MANIPULATION
+Manipulation Score: 65%
+Control Score: 35%
+
+10.
+**A:** I really need you to pay your share of the rent by Friday.
+**B:** I know, I’m just waiting for my paycheck to clear.
+**A:** You said the same thing last month and I ended up covering for you again.
+**B:** I’m doing the best I can, but you're making me feel like a total failure just because I'm struggling right now.
+
+Label: MANIPULATION
+Manipulation Score: 84%
+Control Score: 16%

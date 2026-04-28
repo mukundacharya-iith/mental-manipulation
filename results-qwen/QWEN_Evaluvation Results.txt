@@ -1,0 +1,18 @@
+========================================
+         EVALUATION RESULTS
+========================================
+Accuracy:  0.7603
+Precision: 0.8113 (When it predicts manipulation, how often is it right?)
+Recall:    0.8515 (Out of all actual manipulations, how many did it find?)
+F1 Score:  0.8309 (Harmonic mean of Precision and Recall)
+========================================
+
+Detailed Classification Report:
+                      precision    recall  f1-score   support
+
+Non-Manipulative (0)       0.62      0.56      0.59        90
+    Manipulative (1)       0.81      0.85      0.83       202
+
+            accuracy                           0.76       292
+           macro avg       0.72      0.70      0.71       292
+        weighted avg       0.75      0.76      0.76       292

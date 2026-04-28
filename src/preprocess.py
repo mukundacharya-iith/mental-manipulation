@@ -112,7 +112,6 @@ def main():
     # Step 3: combine training pool
     train_pool = pd.concat([con_train_pool, maj_ambiguous], ignore_index=True)
 
-    # Step 4: split train pool → train/val
     train_df, val_df = train_test_split(
         train_pool, test_size=0.1, stratify=train_pool["label"], random_state=42
     )
@@ -121,6 +120,34 @@ def main():
     save_csv(train_df, "data/exp3_clean/train.csv")
     save_csv(val_df, "data/exp3_clean/val.csv")
     save_csv(con_test, "data/exp3_clean/test.csv")
+    
+    # ==========================================
+    #   4: BALANCE THE TRAIN POOL 
+    # ==========================================
+    # Separate the classes within the combined training pool
+    class_0 = train_pool[train_pool["label"] == 0] # Non-Manipulative
+    class_1 = train_pool[train_pool["label"] == 1] # Manipulative
+    
+    # Find the size of the minority class
+    min_size = min(len(class_0), len(class_1))
+    
+    # Undersample the majority class to match the minority class
+    class_0_balanced = class_0.sample(n=min_size, random_state=42)
+    class_1_balanced = class_1.sample(n=min_size, random_state=42)
+    
+    # Recombine into a perfectly balanced training pool
+    balanced_train_pool = pd.concat([class_0_balanced, class_1_balanced]).sample(frac=1, random_state=42).reset_index(drop=True)
+    # ==========================================
+    
+    # Step 4: split the BALANCED train pool → train/val
+    train_df_balanced, val_df_balanced = train_test_split(
+        balanced_train_pool, test_size=0.1, stratify=balanced_train_pool["label"], random_state=42
+    )
+
+    # Save
+    save_csv(train_df_balanced, "data/balanced/train.csv")
+    save_csv(val_df_balanced, "data/balanced/val.csv")
+    save_csv(con_test, "data/balanced/test.csv")
 
     print("\nFinal Sizes:")
     print(f"Exp1 MAJ Train: {len(maj_train)}")

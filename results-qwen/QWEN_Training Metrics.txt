@@ -1,0 +1,12 @@
+Training meter per Epoch:
+Epoch	Training Loss	Validation Loss
+1	1.573662	1.614882
+2	1.519794	1.609377
+3	1.511104	1.609247
+
+***** Overall train metrics *****
+  total_flos               = 13175405GF
+  train_loss               =     1.5702
+  train_runtime            = 5:36:02.60
+  train_samples_per_second =      0.292
+  train_steps_per_second   =      0.018

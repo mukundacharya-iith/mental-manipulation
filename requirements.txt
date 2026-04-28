@@ -7,6 +7,6 @@ numpy
 tqdm
 peft
 accelerate
-peft
-os
-time
+gradio
+trl
+bitsandbytes

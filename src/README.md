@@ -7,44 +7,28 @@ This folder contains the core preprocessing, dataset, and model training scripts
 - `preprocess.py`
   - Loads raw CSV files from `data/raw/`.
   - Cleans the data and standardizes column names to `text`, `label`, and `technique`.
-  - Creates three experiment datasets:
+  - Creates four experiment datasets:
     - `data/exp1_maj/` — majority-only split
     - `data/exp2_con/` — control-only split
     - `data/exp3_clean/` — clean combined split
+    - `data/BalancedDataset/` — clean combined split + balances the class imbalance present
   - Run with:
     ```powershell
     python src/preprocess.py
     ```
 
-- `baseline.py`
-  - Trains a classical TF-IDF + Logistic Regression classifier.
-  - Loads data from `data/processed/train.csv`, `data/processed/val.csv`, and `data/processed/processed_con.csv`.
-  - Evaluates on train, validation, and test sets.
-  - Writes outputs to `results/` including metrics, confusion matrices, and reports.
-  - Run with:
-    ```powershell
-    python src/baseline.py
-    ```
+- `dataset.py`
+  - Defines the `ManipulationDataset` PyTorch dataset class.
+  - Tokenizes input text with the Hugging Face tokenizer.
+  - Returns `input_ids`, `attention_mask`, and `labels` for model training.
 
-- `train.py`
-  - Trains a DistilBERT sequence classification model.
-  - Uses `data/processed/*` as input.
-  - Applies class weighting and saves the best model to `model/`.
-  - Logs metrics and evaluation outputs to `results/`.
-  - Run with:
-    ```powershell
-    python src/train.py
-    ```
-
-- `train_lora.py`
-  - Trains a LoRA-adapted DistilBERT model using PEFT.
-  - Loads the same processed data as `train.py`.
-  - Saves the best LoRA model to `model_lora/`.
-  - Writes logs to `results/`.
-  - Run with:
-    ```powershell
-    python src/train_lora.py
-    ```
+- `utils/logger.py`
+  - Provides helper functions for result logging:
+    - `init_results_dir()`
+    - `log_to_file(message, filename)`
+    - `save_metrics(result, filename)`
+    - `save_confusion_matrix(cm, filename)`
+    - `save_report(report, filename)`
 
 - `train-v2.py`
   - Improved DistilBERT training script with dynamic dataset path support.
@@ -73,36 +57,34 @@ This folder contains the core preprocessing, dataset, and model training scripts
     python src/train-v4-lora-finetune.py --data_dir data/exp3_clean --exp_name clean_finetune_lora
     ```
 
-- `predict.py`
-  - Loads a trained model (default: `models/clean-finetune-lora/clean-finetune-lora`) for inference.
-  - Provides an interactive CLI to input text and get predictions (MANIPULATION or CONTROL) with confidence scores.
-  - Uses a configurable threshold (default: 0.6) for classification.
-  - Run with:
+- `Qwen_Train_Eval.py`
+  - Loads the `models/Qwen_1.5_BaseModel` in 4-bit precision to save memory.
+  - Uses the balanced split present in `data/BalancedDataset`
+  - Initializes a LoRA adapter targeting specific attention modules (`q_proj`, `k_proj`, `v_proj`, `o_proj`).
+  - Runs 3 epochs of Supervised Fine-Tuning (SFT).
+  - Automatically saves logs and the final model to `models/qwen-manipulation-detector-model`.
+  - **Prerequisite**
+      - Download the base Qwen model (`Qwen/Qwen2.5-1.5B-Instruct`) locally into the folder named `models/Qwen_1.5_BaseModel`,
+  - Example:
     ```powershell
-    python src/predict.py
-    ```
-    Example output:
-    ```
-    Enter text (or 'q' to quit): I’ve been doing this for 20 years, so you should stop questioning my methods and just do what I say.
-
-    Prediction:
-    Label: MANIPULATION
-    Manipulation Score: 0.8348
-    Control Score: 0.1652
+  python src/Qwen_Train_Eval.py
     ```
 
-- `dataset.py`
-  - Defines the `ManipulationDataset` PyTorch dataset class.
-  - Tokenizes input text with the Hugging Face tokenizer.
-  - Returns `input_ids`, `attention_mask`, and `labels` for model training.
-
-- `utils/logger.py`
-  - Provides helper functions for result logging:
-    - `init_results_dir()`
-    - `log_to_file(message, filename)`
-    - `save_metrics(result, filename)`
-    - `save_confusion_matrix(cm, filename)`
-    - `save_report(report, filename)`
+- `predict-ui.py`
+  - Launches a Gradio web interface for real-time comparison between the Discriminative (DistilBERT) and Generative (Qwen) models.
+  - Loads the DistilBERT model and its LoRA adapter from `models/clean-finetune` and Qwen from the `models/qwen-manipulation-detector-model directory`.
+  - Results are yielded in parallel, meaning whichever model finishes first populates its box while the other continues processing.
+  - **Prerequisites** 
+      - A `models/offload` folder must be pre-created in the project root to handle model weights.
+      - Ensure all model paths are in place:
+        - `models/clean-finetune/clean-finetune` (BERT Base)
+        - `models/clean-finetune-lora/clean-finetune-lora` (BERT Adapter)
+        - `models/Qwen_1.5_BaseModel` (Qwen Base)
+        - `models/qwen-manipulation-detector-model` (Qwen Adapter)
+  - Example:
+    ```powershell
+  python src/predict-ui.py
+    ```
 
 ## How to run
 
@@ -118,40 +100,32 @@ This folder contains the core preprocessing, dataset, and model training scripts
    python src/preprocess.py
    ```
 
-3. Run a baseline model:
+3. Train the base DitilBERT on all the 3 dataset splits:
 
    ```powershell
-   python src/baseline.py
+    python train-v2.py --data_dir data/exp1_maj --exp_name maj
+    python train-v2.py --data_dir data/exp2_con --exp_name con
+    python train-v2.py --data_dir data/exp3_clean --exp_name clean
+
    ```
 
-4. Train DistilBERT:
+4. Train the CLEAN dataset on Finetune and then Finetune + LoRA experiments:
 
    ```powershell
-   python src/train.py
-   ```
-
-5. Train LoRA DistilBERT:
-
-   ```powershell
-   python src/train_lora.py
-   ```
-
-6. Train versioned experiments:
-
-   ```powershell
-   python src/train-v2.py --data_dir data/exp3_clean --exp_name exp3_clean
    python src/train-v3-finetune.py --data_dir data/exp3_clean --exp_name clean_finetune
    python src/train-v4-lora-finetune.py --data_dir data/exp3_clean --exp_name clean_finetune_lora
+
    ```
 
-7. Make predictions with a trained model:
+5. Train the Qwen model on the balanced dataset
 
    ```powershell
-   python src/predict.py
+   python src/Qwen_Train_Eval.py
+
    ```
 
-## Notes
+6. Make predictions in a Gradio based web interface after training both the Qwen and DistilBERT + LoRA model:
 
-- Most training scripts assume `data/processed/` or experiment directories with `train.csv`, `val.csv`, and `test.csv`.
-- The scripts use `results/`, `results-v2/`, `results-v3/`, and `results-v4/` for output storage.
-- `train-v3-finetune.py` and `train-v4-lora-finetune.py` tune evaluation thresholds before final test evaluation.
+   ```powershell
+   python src/predict-ui.py
+   ```

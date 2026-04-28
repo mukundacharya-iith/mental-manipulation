@@ -136,6 +136,52 @@ Test  → 10% CON (held-out clean set)
 
 ---
 
+### Experiment 4: Balanced dataset with the CLEAN approach
+
+This setup builds on Experiment 3 but ensures a 1:1 class ratio to prevent model bias.
+
+#### Step 1: Inherit the Clean Split
+
+```text
+Test set = 10% CON (Held-out, High-Consensus)
+Train Pool = 90% CON + Ambiguous Data (MAJ - CON)
+
+```
+---
+
+#### Step 2: Class Equalization (Undersampling)
+
+The training pool is separated into its two classes to find the bottleneck.
+
+```text
+Size_Limit = Minimum(Class_0_Count, Class_1_Count)
+
+```
+---
+
+#### Step 3: Build Balanced Training Pool
+
+The undersampled classes are recombined and shuffled.
+
+```text
+Balanced Pool = 
+    Class_0 (Limited to Size_Limit)
+  + Class_1 (Limited to Size_Limit)
+
+```
+---
+
+#### Step 4: Final Split
+
+```text
+Train (Balanced) → 90% of Balanced Pool
+Val (Balanced)   → 10% of Balanced Pool
+Test (Clean)     → 10% CON (Identical to Experiment 3)
+
+```
+
+---
+
 ## 5. Generated Files
 
 After preprocessing:
@@ -156,6 +202,12 @@ data/
 │   ├── train.csv
 │   ├── val.csv
 │   └── test.csv
+|
+├── BalancedDataset/
+│   ├── train.csv
+│   ├── val.csv
+│   └── test.csv
+
 ```
 
 ---
@@ -167,6 +219,8 @@ data/
 | MAJ        | 3200  | 400 | 400  |
 | CON        | 2332  | 292 | 292  |
 | Clean      | 3337  | 371 | 292  |
+| Balanced   | 1965  | 219 | 292  |
+
 
 ---
 
@@ -235,5 +289,6 @@ Technique    → technique
 * MAJ → noisy but large
 * CON → clean but smaller
 * Clean protocol → best practical setup
+* Balanced dataset → more balanced to class imbalance
 
 ---
