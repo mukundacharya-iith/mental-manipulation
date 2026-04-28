@@ -18,7 +18,7 @@ This repository supports dataset preparation, model training, evaluation, and pr
 - `src/` — preprocessing, dataset, training, and prediction scripts
 - `models/` — saved model checkpoints, adapters, and Qwen assets
 - `results/` — evaluation reports, confusion matrices, and logs
-- `requirements.txt` — Python dependencies
+- `requirements.txt` — Python dependencies.
 
 ## File Structure
 
