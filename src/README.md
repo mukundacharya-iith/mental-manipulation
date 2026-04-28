@@ -64,10 +64,10 @@ This folder contains the core preprocessing, dataset, and model training scripts
   - Runs 3 epochs of Supervised Fine-Tuning (SFT).
   - Automatically saves logs and the final model to `models/qwen-manipulation-detector-model`.
   - **Prerequisite**
-      - Download the base Qwen model (`Qwen/Qwen2.5-1.5B-Instruct`) locally into the folder named `models/Qwen_1.5_BaseModel`,
+      - Download the base Qwen model (`Qwen/Qwen2.5-1.5B-Instruct`) locally into the folder named `models/Qwen_1.5_BaseModel`.
   - Example:
     ```powershell
-  python src/Qwen_Train_Eval.py
+    python src/Qwen_Train_Eval.py
     ```
 
 - `predict-ui.py`
@@ -83,7 +83,7 @@ This folder contains the core preprocessing, dataset, and model training scripts
         - `models/qwen-manipulation-detector-model` (Qwen Adapter)
   - Example:
     ```powershell
-  python src/predict-ui.py
+    python src/predict-ui.py
     ```
 
 ## How to run

@@ -70,7 +70,7 @@ mental-manipulation/
 
 ### 1. Data Preparation
 
-The dataset workflow is described in `data/README.md`.
+The dataset workflow is described in [`data/README.md`](https://github.com/mukundacharya-iith/mental-manipulation/blob/main/data/README.md).
 
 This step produces the following experimental splits:
 
@@ -83,7 +83,7 @@ The preprocessing step standardizes each CSV to `text`, `label`, and `technique`
 
 ### 2. Training and Evaluation
 
-The core training scripts are documented in `src/README.md`.
+The core training scripts are documented in [`src/README.md`](https://github.com/mukundacharya-iith/mental-manipulation/blob/main/src/README.md).
 
 The main flows are:
 
@@ -204,13 +204,13 @@ Generated outputs include:
 | **Manipulation Recall**    | **0.88**       | 0.68             | 0.79         | 0.85       |
 | **Manipulation F1**        | 0.81           | 0.74             | 0.79         | **0.83**   |
 
-For a full comparison of the training pipeline and metrics, see `RESULTS-README.md`.
+For a full comparison of the training pipeline and metrics, see [`RESULTS-README.md`](https://github.com/mukundacharya-iith/mental-manipulation/blob/main/RESULTS-README.md).
 
 ## Additional Documentation
 
-- `src/README.md` — script-level usage, model workflow, and training examples
-- `data/README.md` — dataset variants, experiment definitions, and preprocessing details
-- `RESULTS-README.md` — evaluation summary, performance comparison, and final results
+- [`src/README.md`](https://github.com/mukundacharya-iith/mental-manipulation/blob/main/src/README.md) — script-level usage, model workflow, and training examples
+- [`data/README.md`](https://github.com/mukundacharya-iith/mental-manipulation/blob/main/data/README.md) — dataset variants, experiment definitions, and preprocessing details
+- [`RESULTS-README.md`](https://github.com/mukundacharya-iith/mental-manipulation/blob/main/RESULTS-README.md) — evaluation summary, performance comparison, and final results
 
 ## Recommended Workflow
 
