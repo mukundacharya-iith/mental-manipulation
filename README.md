@@ -105,14 +105,6 @@ It compares:
 
 The UI is designed to show predictions in parallel and requires the relevant saved model directories to be present.
 
-## UI Model Download (Optional)
-
-If you want to run `src/predict-ui.py` directly without retraining, download the full project zip from the submission and run - 
-
-```powershell
-python src/predict-ui.py
-```
-
 The packages should include the DistilBERT and Qwen model assets. Place the extracted model directories exactly as follows:
 
 - `models/clean-finetune/clean-finetune`
@@ -129,6 +121,14 @@ This ensures `src/predict-ui.py` can load both the discriminative and generative
 For required model paths and more details, see `src/README.md`.
 
 ## Quick Start
+
+## For running directly withour re-training and directly using the models.
+
+If you want to run `src/predict-ui.py` directly without retraining, download the full project zip from the submission and run - 
+
+```powershell
+python src/predict-ui.py
+```
 
 1. Install dependencies from the repository root:
 
