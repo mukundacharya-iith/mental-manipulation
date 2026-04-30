@@ -31,13 +31,13 @@ qwen_tokenizer = AutoTokenizer.from_pretrained(QWEN_ADAPTER_PATH)
 qwen_base_model = AutoModelForCausalLM.from_pretrained(
     QWEN_BASE_NAME, 
     dtype=torch.bfloat16, 
-    device_map="auto",
     offload_folder="models/offload",
     trust_remote_code=True
 )
-qwen_model = PeftModel.from_pretrained(qwen_base_model, QWEN_ADAPTER_PATH, offload_folder="models/offload")
+qwen_model = PeftModel.from_pretrained(qwen_base_model, QWEN_ADAPTER_PATH, device_map="auto",  offload_folder="models/offload")
 qwen_model.eval()
 
+print(f"Active Adapter: {qwen_model.active_adapter}")
 print("Models loaded successfully!")
 
 # ==========================================
